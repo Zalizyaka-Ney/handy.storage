@@ -1,5 +1,18 @@
 Handy Storage is a framework simpifying work with SQLite databases for Android developers. It's based on the java reflection API.
 
+### Import. ###
+
+Add to your build.gradle the following:
+```
+repositories {
+    maven { url "http://dl.bintray.com/zalizyaka-ney/maven" }
+}
+
+dependencies {
+    compile 'com.github.zalizyaka-ney:handy.storage:1.0.0'
+}
+```
+
 ### Base usage. ###
 
 First, you need to declare models for data to be stored in a database. Every model class must have a constructor without parameters. For example:
