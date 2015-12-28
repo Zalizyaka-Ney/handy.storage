@@ -4,10 +4,6 @@ Handy Storage is a framework simpifying work with SQLite databases for Android d
 
 Add to your build.gradle the following:
 ```
-repositories {
-    maven { url "http://dl.bintray.com/zalizyaka-ney/maven" }
-}
-
 dependencies {
     compile 'com.github.zalizyaka-ney:handy.storage:1.0.0'
 }
