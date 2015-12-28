@@ -1,0 +1,98 @@
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.2.4'
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.google.code.gson:gson:2.4'
+}
+
+apply plugin: 'me.tatarka.retrolambda'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def libname = "handy.storage-${libraryVersion}"
+
+jar {
+    baseName libname
+}
+
+ext {
+    outputFolder = new File(project.getProjectDir(), "jar")
+}
+
+def prepareOutputFolder() {
+    if (outputFolder.exists()) {
+
+        File[] files = outputFolder.listFiles()
+        if (files != null) {
+            for (File file : files) {
+                file.delete()
+            }
+        }
+    } else {
+        outputFolder.mkdirs()
+    }
+}
+
+prepareOutputFolder()
+
+def jarFile = file(new File((File) libsDir, libname + ".jar"))
+def javadocFile = file(new File((File) libsDir, libname + "-javadoc.jar"))
+def sourcesFile = file(new File((File) libsDir, libname + "-sources.jar"))
+
+println jarFile
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+    baseName libname
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+    baseName libname
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+task buildJar(dependsOn: [clean, jar, javadocJar, sourcesJar]) << {
+    copy {
+        from jarFile
+        into "/jar"
+    }
+    copy {
+        from javadocFile
+        into "/jar"
+    }
+    copy {
+        from sourcesFile
+        into "/jar"
+    }
+    file("/jar/" + libname + ".pom").text = file("handy.storage.pom").text.replaceAll("%version%", libraryVersion)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+javadoc {
+    failOnError false
+}

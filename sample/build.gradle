@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    maven { url "http://dl.bintray.com/zalizyaka-ney/maven" }
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "handy.storage.sample"
+        minSdkVersion 11
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.github.zalizyaka-ney:handy.storage:1.0.0'
+}
