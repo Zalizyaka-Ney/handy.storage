@@ -1,4 +1,4 @@
-Handy Storage is a framework simpifying work with SQLite databases for Android developers. It's based on the java reflection API.
+Handy Storage is a framework simplifying work with SQLite databases for Android developers. It's based on the java reflection API.
 
 ### Import. ###
 
