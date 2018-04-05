@@ -99,7 +99,7 @@ Note that all operations with database can be executed only in a background thre
 ### Declaration of models for database tables. ###
 All data model classes must implement the **Model** interface. All fields in those classes annotated with **Column** annotation will be declared as columns in the database table. Fields declared in superclasses will be also included there (this can be turned off). Use annotations **AutoIncrement, ForeignKey, NotNull, PrimaryKey, Unique, CompositePrimaryKey, CompositeUnique** to declare column and table constrains. Names of columns and tables can be set via annotations **Column** and **TableName** correspondently.
 
-You also can use a **Reference** annotation to automatize the work with foreign keys (see [the corresponding wiki page](https://github.com/Zalizyaka-Ney/handy.storage/wiki/References-to-anothe-tables).
+You also can use a **Reference** annotation to automatize the work with foreign keys (see [the corresponding wiki page](https://github.com/Zalizyaka-Ney/handy.storage/wiki/References-to-anothe-tables)).
 
 If your data model contains a rowid (i.e. *INTEGER PRIMARY KEY AUTOINCREMENT*) column - consider extending **UniqueObject** class, it already has such a field declared.
 
