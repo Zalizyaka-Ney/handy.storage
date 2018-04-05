@@ -57,14 +57,14 @@ Database database = HandyStorage.defaultInstance().newDatabase(context, DATABASE
 ```
 There can be any number of **HandyStorage** and **Database** objects simultaneously. Hovewer, there can not be two **Database** instances working with the same SQLite database simultaneously - if you want to create another **Database** object for work with the database, you must call **close()** on the previous one first.
 	
-The code above don't do any heavy operation and can be called in onCreate() of you Application class. The database initialization is postponed until you call **getTable()** method.
+The code above don't do any heavy operation and can be called in onCreate() of your Application class. The database initialization is postponed until you call **getTable()** method.
 
 ```
 WritableTable<Person> table = database.getTable(Person.class);
 ```
 
 
-Having a table object you can do you database routine.
+Having a table object you can do your database routine.
 
 
 ```
